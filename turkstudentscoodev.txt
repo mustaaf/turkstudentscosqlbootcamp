@@ -1,0 +1,60 @@
+SORU 1 
+
+---------------------------------------------------
+SELECT FirstName, LastName, Salary
+FROM Employees;
+
+select komutu hangi sütunları getireceğimizi belirtiyor 
+from komutu ise hangi tablodan alacağımızı belirtiyor
+
+
+
+
+SORU 2
+
+-----------------------------------------------------
+SELECT Distinct departmentid
+FROM Employees;
+
+distinct komutu  aynı departmentid'leri tek sefer gösterir.
+
+
+
+
+SORU 3
+------------------------------------------------------
+
+SELECT *
+FROM Employees
+WHERE departmentid = 1;
+
+* ile bütün sütunları aldım WHERE komutu belirli bir departmentid ye sahip olanları göstermemi sağladı 
+department tablosundan gördüğüm üzere IT integer bir değer olan 1.
+
+
+
+
+
+SORU 4
+
+---------------------------------------------------------
+
+SELECT FirstName, LastName, Salary
+FROM Employees
+ORDER BY Salary DESC;
+
+
+ORDER BY komutu belirli bir sütuna göre sıralamamı sağlıyor DESC ise büyükten küçüğe sıralamamı sağlıyor.
+
+
+
+
+
+SORU 5
+
+---------------------------------------------------------------
+
+SELECT FirstName || ' ' || LastName AS FullName, Salary
+FROM Employees;
+
+sql de || bu öperatör sütünları birleştirmemi sağlıyor bunu kullanarak FirstName ve LastName sütunlarını birleştirip FullName sütununu elde ettim.
