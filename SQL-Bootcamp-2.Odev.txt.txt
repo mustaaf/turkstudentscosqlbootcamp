@@ -1,0 +1,48 @@
+-- SORU 1: billing_state Kolonundaki Null Değerlerin Sayısını Bulma
+
+-- Bu sorgu, invoice tablosunda billing_state kolonunda bulunan NULL değerlerin sayısını hesaplar.
+SELECT count(*) 
+FROM invoice 
+WHERE billing_state IS NULL;
+
+
+-- SORU 2: total2 Kolonunu Ekleyip, total Kolonundaki Değerleri 2 ile Çarpıp total2 Kolonuna Aktarma
+
+-- 1. total2 Kolonunun Eklenmesi
+-- Bu sorgu, invoice tablosuna total2 adında yeni bir kolon ekler ve bu kolonu DECIMAL türünde tanımlar.
+ALTER TABLE invoice
+ADD COLUMN total2 DECIMAL;
+
+-- 2. total Kolonundaki Değerlerin 2 ile Çarpılması ve total2 Kolonuna Aktarılması
+-- Bu sorgu, total kolonundaki tüm değerleri 2 ile çarpar ve sonucu total2 kolonuna aktarır.
+UPDATE invoice
+SET total2 = total * 2;
+
+-- 3. Güncellenmiş Tabloyu Görüntüleme
+-- Bu sorgu, invoice tablosundaki tüm sütunları ve verileri görüntüler.
+SELECT * 
+FROM invoice;
+
+
+-- 4. Güncellenmiş Tabloyu Azalan Sıraya Göre Sıralama
+-- Bu sorgu, total ve total2 kolonlarını azalan sırayla sıralar.
+SELECT
+  total,
+  total2
+FROM
+  invoice
+ORDER BY
+  total DESC,
+  total2 DESC;
+
+
+-- SORU 3: Billing Address Kolonundan Belirli Karakterleri Almak
+
+-- Bu sorgu, billing_address kolonundan ilk 3 karakter ve son 4 karakteri alır ve "acik_address" olarak adlandırır.
+-- Ayrıca, sadece 2013 yılı Ağustos ayına ait faturaları seçer.
+SELECT 
+  LEFT(billing_address, 3) || '' || RIGHT(billing_address, 4) AS acik_address
+FROM invoice 
+WHERE EXTRACT(YEAR FROM invoice_date) = 2013 
+  AND EXTRACT(MONTH FROM invoice_date) = 8;
+
